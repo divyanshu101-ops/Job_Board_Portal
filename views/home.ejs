@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Board Portal</title>
+</head>
+<body>
+
+    <h1>Job Board Dashboard</h1>
+
+    <p>Explore jobs, companies, and hiring trends.</p>
+
+    <hr>
+
+    <h2>Platform Statistics</h2>
+
+    <ul>
+        <li>
+            <strong>Total Active Jobs:</strong>
+            <%= totalActive.count %>
+        </li>
+
+        <li>
+            <strong>Total Companies:</strong>
+            <%= totalCompanies.count %>
+        </li>
+
+        <li>
+            <strong>Active Cities:</strong>
+            <%= totalCities.count %>
+        </li>
+    </ul>
+
+    <hr>
+
+    <h2>Top 5 Latest Jobs</h2>
+
+    <% if(latestJobs.length > 0) { %>
+
+        <ul>
+            <% latestJobs.forEach(job => { %>
+
+                <li>
+                    <strong><%= job.role %></strong>
+                    at
+                    <%= job.company %>
+                </li>
+
+            <% }) %>
+        </ul>
+
+    <% } else { %>
+
+        <p>No jobs available.</p>
+
+    <% } %>
+
+</body>
+</html>

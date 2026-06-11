@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Jobs</title>
+</head>
+<body>
+
+    <h1>Available Jobs</h1>
+
+    <hr>
+
+    <form action="/job" method="GET">
+
+        <div>
+            <label>Search Job</label>
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Backend Developer"
+                value="<%= search || '' %>"
+            >
+        </div>
+
+        <br>
+
+        <div>
+            <label>Location</label>
+
+            <select name="location">
+
+                <option value="">
+                    All Locations
+                </option>
+
+                <option value="Delhi"
+                    <%= location === "Delhi" ? "selected" : "" %>>
+                    Delhi
+                </option>
+
+                <option value="Mumbai"
+                    <%= location === "Mumbai" ? "selected" : "" %>>
+                    Mumbai
+                </option>
+
+                <option value="Bangalore"
+                    <%= location === "Bangalore" ? "selected" : "" %>>
+                    Bangalore
+                </option>
+
+                <option value="Pune"
+                    <%= location === "Pune" ? "selected" : "" %>>
+                    Pune
+                </option>
+
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <label>Job Type</label>
+
+            <select name="job_type">
+
+                <option value="">
+                    All Types
+                </option>
+
+                <option value="full-time"
+                    <%= jobType === "full-time" ? "selected" : "" %>>
+                    Full Time
+                </option>
+
+                <option value="part-time"
+                    <%= jobType === "part-time" ? "selected" : "" %>>
+                    Part Time
+                </option>
+
+                <option value="remote"
+                    <%= jobType === "remote" ? "selected" : "" %>>
+                    Remote
+                </option>
+
+                <option value="internship"
+                    <%= jobType === "internship" ? "selected" : "" %>>
+                    Internship
+                </option>
+
+            </select>
+        </div>
+
+        <br>
+
+        <div>
+            <label>Minimum Salary</label>
+
+            <input
+                type="number"
+                name="min_salary"
+                placeholder="500000"
+                value="<%= minSalary || '' %>"
+            >
+        </div>
+
+        <br>
+
+        <button type="submit">
+            Apply Filters
+        </button>
+
+    </form>
+
+    <hr>
+
+    <% if (jobsDetail.length > 0) { %>
+
+        <% jobsDetail.forEach(job => { %>
+
+            <div>
+
+                <h2>
+                    <%= job.title %>
+                </h2>
+
+                <p>
+                    <strong>Company:</strong>
+                    <%= job.company_name %>
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    <%= job.location %>
+                </p>
+
+                <p>
+                    <strong>Job Type:</strong>
+                    <%= job.job_type %>
+                </p>
+
+                <p>
+                    <strong>Salary:</strong>
+                    ₹<%= job.salary_min %>
+                    -
+                    ₹<%= job.salary_max %>
+                </p>
+
+                <p>
+                    <strong>Experience Required:</strong>
+                    <%= job.experience_years %> Years
+                </p>
+
+            </div>
+
+            <hr>
+
+        <% }) %>
+
+    <% } else { %>
+
+        <h3>No Jobs Found</h3>
+
+    <% } %>
+
+</body>
+</html>
