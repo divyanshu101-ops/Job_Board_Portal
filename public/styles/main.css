@@ -1,0 +1,270 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container{
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+/* ---------------- HOME PAGE ---------------- */
+
+.dashboard-header,
+.page-header{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-title{
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.page-subtitle{
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.stats-card,
+.latest-jobs-card,
+.filter-card,
+.job-detail-card{
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.section-title{
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.stats-list{
+    list-style: none;
+}
+
+.stat-item{
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.stat-item:last-child{
+    border-bottom: none;
+}
+
+.latest-jobs-list{
+    list-style: none;
+}
+
+.latest-job-item{
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.latest-job-item:last-child{
+    border-bottom: none;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.view-jobs-btn,
+.back-home-btn,
+.back-btn,
+.filter-btn,
+.details-btn{
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.view-jobs-btn:hover,
+.back-home-btn:hover,
+.back-btn:hover,
+.filter-btn:hover,
+.details-btn:hover{
+    background-color: #1d4ed8;
+}
+
+.delete-btn{
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #dc2626;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.delete-btn:hover{
+    background-color: #b91c1c;
+}
+
+.dashboard-actions{
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* ---------------- FILTER FORM ---------------- */
+
+.filter-form{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label{
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* ---------------- JOB CARDS ---------------- */
+
+.jobs-container{
+    display: grid;
+    gap: 20px;
+}
+
+.job-card{
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.job-title{
+    margin-bottom: 15px;
+    color: #2563eb;
+}
+
+.job-card p{
+    margin-bottom: 10px;
+}
+
+.job-actions{
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ---------------- PAGINATION ---------------- */
+
+.pagination{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.pagination a,
+.current-page{
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.page-number,
+.pagination-btn{
+    background: white;
+    color: #2563eb;
+    border: 1px solid #ddd;
+}
+
+.page-number:hover,
+.pagination-btn:hover{
+    background-color: #2563eb;
+    color: white;
+}
+
+.current-page{
+    background-color: #2563eb;
+    color: white;
+    font-weight: bold;
+}
+
+/* ---------------- JOB DETAIL PAGE ---------------- */
+
+.job-detail-title{
+    margin-bottom: 20px;
+    color: #2563eb;
+}
+
+.company-section,
+.job-info-section,
+.description-section{
+    margin-bottom: 25px;
+}
+
+.company-section p,
+.job-info-section p,
+.description-section p{
+    margin-bottom: 10px;
+}
+
+.job-description{
+    background-color: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.detail-actions{
+    margin-top: 25px;
+}
+
+/* ---------------- EMPTY STATE ---------------- */
+
+.empty-state{
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media(max-width: 768px){
+
+    .page-title{
+        font-size: 2rem;
+    }
+
+    .job-actions{
+        flex-direction: column;
+    }
+
+    .details-btn,
+    .delete-btn{
+        text-align: center;
+    }
+}

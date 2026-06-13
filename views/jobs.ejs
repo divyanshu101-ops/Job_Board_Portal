@@ -4,178 +4,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Jobs</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <h1>Available Jobs</h1>
-    <hr>
-    <form action="/job" method="GET">
-        <div>
-            <label>Search Job</label>
 
-            <input
-                type="text"
-                name="search"
-                placeholder="Backend Developer"
-                value="<%= search || '' %>"
-            >
-        </div>
+    <div class="container">
 
-        <br>
+        <header class="page-header">
 
-        <div>
-            <label>Location</label>
+            <h1 class="page-title">
+                Available Jobs
+            </h1>
 
-            <select name="location">
+            <a href="/" class="back-home-btn">
+                Dashboard
+            </a>
 
-                <option value="">
-                    All Locations
-                </option>
+        </header>
 
-                <option value="Delhi"
-                    <%= location === "Delhi" ? "selected" : "" %>>
-                    Delhi
-                </option>
+        <section class="filter-card">
 
-                <option value="Mumbai"
-                    <%= location === "Mumbai" ? "selected" : "" %>>
-                    Mumbai
-                </option>
+            <form action="/job" method="GET" class="filter-form">
 
-                <option value="Bangalore"
-                    <%= location === "Bangalore" ? "selected" : "" %>>
-                    Bangalore
-                </option>
+                <div class="form-group">
 
-                <option value="Pune"
-                    <%= location === "Pune" ? "selected" : "" %>>
-                    Pune
-                </option>
+                    <label>Search Job</label>
 
-            </select>
-        </div>
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Backend Developer"
+                        value="<%= search || '' %>"
+                    >
 
-        <br>
+                </div>
 
-        <div>
-            <label>Job Type</label>
+                <div class="form-group">
 
-            <select name="job_type">
+                    <label>Location</label>
 
-                <option value="">
-                    All Types
-                </option>
+                    <select name="location">
 
-                <option value="full-time"
-                    <%= jobType === "full-time" ? "selected" : "" %>>
-                    Full Time
-                </option>
+                        <option value="">All Locations</option>
 
-                <option value="part-time"
-                    <%= jobType === "part-time" ? "selected" : "" %>>
-                    Part Time
-                </option>
+                        <option value="Delhi"
+                            <%= location === "Delhi" ? "selected" : "" %>>
+                            Delhi
+                        </option>
 
-                <option value="remote"
-                    <%= jobType === "remote" ? "selected" : "" %>>
-                    Remote
-                </option>
+                        <option value="Mumbai"
+                            <%= location === "Mumbai" ? "selected" : "" %>>
+                            Mumbai
+                        </option>
 
-                <option value="internship"
-                    <%= jobType === "internship" ? "selected" : "" %>>
-                    Internship
-                </option>
+                        <option value="Bangalore"
+                            <%= location === "Bangalore" ? "selected" : "" %>>
+                            Bangalore
+                        </option>
 
-            </select>
-        </div>
+                        <option value="Pune"
+                            <%= location === "Pune" ? "selected" : "" %>>
+                            Pune
+                        </option>
 
-        <br>
-        <div>
-            <label>Minimum Salary</label>
+                    </select>
 
-            <input
-                type="number"
-                name="min_salary"
-                placeholder="500000"
-                value="<%= minSalary || '' %>"
-            >
-        </div>
+                </div>
 
-        <br>
-        <button type="submit">
-            Apply Filters
-        </button>
-    </form>
-    <hr>
+                <div class="form-group">
 
-    <% if (jobsDetail.length > 0) { %>
-        <% jobsDetail.forEach(job => { %>
-            <div>
-                <h2>
-                    <%= job.title %>
-                </h2>
+                    <label>Job Type</label>
 
-                <p>
-                    <strong>Company:</strong>
-                    <%= job.company_name %>
-                </p>
+                    <select name="job_type">
 
-                <p>
-                    <strong>Location:</strong>
-                    <%= job.location %>
-                </p>
+                        <option value="">
+                            All Types
+                        </option>
 
-                <p>
-                    <strong>Job Type:</strong>
-                    <%= job.job_type %>
-                </p>
+                        <option value="full-time"
+                            <%= jobType === "full-time" ? "selected" : "" %>>
+                            Full Time
+                        </option>
 
-                <p>
-                    <strong>Salary:</strong>
-                    ₹<%= job.salary_min %>
-                    -
-                    ₹<%= job.salary_max %>
-                </p>
+                        <option value="part-time"
+                            <%= jobType === "part-time" ? "selected" : "" %>>
+                            Part Time
+                        </option>
 
-                <p>
-                    <strong>Experience Required:</strong>
-                    <%= job.experience_years %> Years
-                </p>
+                        <option value="remote"
+                            <%= jobType === "remote" ? "selected" : "" %>>
+                            Remote
+                        </option>
+
+                        <option value="internship"
+                            <%= jobType === "internship" ? "selected" : "" %>>
+                            Internship
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Minimum Salary</label>
+
+                    <input
+                        type="number"
+                        name="min_salary"
+                        placeholder="500000"
+                        value="<%= minSalary || '' %>"
+                    >
+
+                </div>
+
+                <button type="submit" class="filter-btn">
+                    Apply Filters
+                </button>
+
+            </form>
+
+        </section>
+
+        <% if (jobsDetail.length > 0) { %>
+
+            <section class="jobs-container">
+
+                <% jobsDetail.forEach(job => { %>
+
+                    <div class="job-card">
+
+                        <h2 class="job-title">
+                            <%= job.title %>
+                        </h2>
+
+                        <p>
+                            <strong>Company:</strong>
+                            <%= job.company_name %>
+                        </p>
+
+                        <p>
+                            <strong>Location:</strong>
+                            <%= job.location %>
+                        </p>
+
+                        <p>
+                            <strong>Job Type:</strong>
+                            <%= job.job_type %>
+                        </p>
+
+                        <p>
+                            <strong>Salary:</strong>
+                            ₹<%= job.salary_min %>
+                            -
+                            ₹<%= job.salary_max %>
+                        </p>
+
+                        <p>
+                            <strong>Experience Required:</strong>
+                            <%= job.experience_years %> Years
+                        </p>
+
+                        <div class="job-actions">
+
+                            <a href="/job/<%= job.id %>" class="details-btn">
+                                View Details
+                            </a>
+
+                            <a href="/job/delete/<%= job.id %>" class="delete-btn">
+                                Delete Job
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                <% }) %>
+
+            </section>
+
+        <% } else { %>
+
+            <div class="empty-state">
+
+                <h3>
+                    No Jobs Found
+                </h3>
+
             </div>
 
-            <hr>
-        <% }) %>
-
-    <% } else { %>
-        <h3>No Jobs Found</h3>
-    <% } %>
-
-    <hr>
-
-    <div>
-        <% if(page > 1){ %>
-            <a href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= page - 1 %>">
-                Previous
-            </a>
         <% } %>
 
-        <% for(let i = 1; i <= totalPages; i++){ %>
-            <% if(i === page){ %>
-                <strong>
-                    <%= i %>
-                </strong>
+        <div class="pagination">
 
-            <% } else { %>
-                <a href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= page %>">
-                    <%= i %>
+            <% if(page > 1){ %>
+
+                <a class="pagination-btn"
+                   href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= page - 1 %>">
+                    Previous
                 </a>
-            <% } %>
-        <% } %>
 
-        <% if(page < totalPages){ %>
-            <a href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= page + 1 %>">
-                Next
-            </a>
-        <% } %>
+            <% } %>
+
+            <% for(let i = 1; i <= totalPages; i++){ %>
+
+                <% if(i === page){ %>
+
+                    <span class="current-page">
+                        <%= i %>
+                    </span>
+
+                <% } else { %>
+
+                    <a class="page-number"
+                       href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= i %>">
+                        <%= i %>
+                    </a>
+
+                <% } %>
+
+            <% } %>
+
+            <% if(page < totalPages){ %>
+
+                <a class="pagination-btn"
+                   href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= page + 1 %>">
+                    Next
+                </a>
+
+            <% } %>
+
+        </div>
+
     </div>
+
 </body>
 </html>

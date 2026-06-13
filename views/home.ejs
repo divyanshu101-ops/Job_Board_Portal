@@ -4,57 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Board Portal</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
 
-    <h1>Job Board Dashboard</h1>
+    <div class="container">
 
-    <p>Explore jobs, companies, and hiring trends.</p>
+        <header class="dashboard-header">
 
-    <hr>
+            <h1 class="page-title">
+                Job Board Dashboard
+            </h1>
 
-    <h2>Platform Statistics</h2>
+            <p class="page-subtitle">
+                Explore jobs, companies, and hiring trends.
+            </p>
 
-    <ul>
-        <li>
-            <strong>Total Active Jobs:</strong>
-            <%= totalActive.count %>
-        </li>
+            <a href="/job" class="view-jobs-btn">
+                Browse Jobs
+            </a>
 
-        <li>
-            <strong>Total Companies:</strong>
-            <%= totalCompanies.count %>
-        </li>
+        </header>
 
-        <li>
-            <strong>Active Cities:</strong>
-            <%= totalCities.count %>
-        </li>
-    </ul>
+        <section class="stats-card">
 
-    <hr>
+            <h2 class="section-title">
+                Platform Statistics
+            </h2>
 
-    <h2>Top 5 Latest Jobs</h2>
+            <ul class="stats-list">
 
-    <% if(latestJobs.length > 0) { %>
-
-        <ul>
-            <% latestJobs.forEach(job => { %>
-
-                <li>
-                    <strong><%= job.role %></strong>
-                    at
-                    <%= job.company %>
+                <li class="stat-item">
+                    <strong>Total Active Jobs:</strong>
+                    <span><%= totalActive.count %></span>
                 </li>
 
-            <% }) %>
-        </ul>
+                <li class="stat-item">
+                    <strong>Total Companies:</strong>
+                    <span><%= totalCompanies.count %></span>
+                </li>
 
-    <% } else { %>
+                <li class="stat-item">
+                    <strong>Active Cities:</strong>
+                    <span><%= totalCities.count %></span>
+                </li>
 
-        <p>No jobs available.</p>
+            </ul>
 
-    <% } %>
+        </section>
+
+        <section class="latest-jobs-card">
+
+            <h2 class="section-title">
+                Top 5 Latest Jobs
+            </h2>
+
+            <% if(latestJobs.length > 0) { %>
+
+                <ul class="latest-jobs-list">
+
+                    <% latestJobs.forEach(job => { %>
+
+                        <li class="latest-job-item">
+
+                            <strong class="job-role">
+                                <%= job.role %>
+                            </strong>
+
+                            <span class="job-company">
+                                at <%= job.company %>
+                            </span>
+
+                        </li>
+
+                    <% }) %>
+
+                </ul>
+
+            <% } else { %>
+
+                <p class="empty-message">
+                    No jobs available.
+                </p>
+
+            <% } %>
+
+            <div class="dashboard-actions">
+
+                <a href="/job" class="view-jobs-btn">
+                    View All Jobs
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
 
 </body>
 </html>

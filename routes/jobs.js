@@ -108,4 +108,56 @@ router.get("/", async (req, res) => {
     }
 });
 
+router.get("/delete/:id", async (req, res) => {
+
+    try {
+
+        const id = req.params.id;
+
+        await pool.query(`
+            DELETE FROM jobs
+            WHERE id = ${id}
+        `);
+
+        res.redirect("/job");
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+
+});
+
+
+router.get("/:id", async (req, res) => {
+
+    try {
+
+        const id = req.params.id;
+
+        const jobDetail = await pool.query(`
+            SELECT
+                j.*,
+                c.name AS company_name,
+                c.industry,
+                c.location AS company_location,
+                c.website,
+                c.founded_year
+            FROM jobs j
+            JOIN companies c
+            ON j.company_id = c.id
+            WHERE j.id = ${id}
+        `);
+
+        res.render("job-detail", {
+            job: jobDetail.rows[0]
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+
+});
+
 export default router;

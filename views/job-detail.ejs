@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Detail</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="job-detail-card">
+
+            <header class="job-detail-header">
+
+                <h1 class="job-detail-title">
+                    <%= job.title %>
+                </h1>
+
+            </header>
+
+            <section class="company-section">
+
+                <h2 class="section-title">
+                    Company Information
+                </h2>
+
+                <p>
+                    <strong>Company:</strong>
+                    <%= job.company_name %>
+                </p>
+
+                <p>
+                    <strong>Industry:</strong>
+                    <%= job.industry %>
+                </p>
+
+                <p>
+                    <strong>Website:</strong>
+                    <a href="<%= job.website %>" target="_blank">
+                        <%= job.website %>
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Founded:</strong>
+                    <%= job.founded_year %>
+                </p>
+
+            </section>
+
+            <section class="job-info-section">
+
+                <h2 class="section-title">
+                    Job Information
+                </h2>
+
+                <p>
+                    <strong>Location:</strong>
+                    <%= job.location %>
+                </p>
+
+                <p>
+                    <strong>Job Type:</strong>
+                    <%= job.job_type %>
+                </p>
+
+                <p>
+                    <strong>Salary:</strong>
+                    ₹<%= job.salary_min %>
+                    -
+                    ₹<%= job.salary_max %>
+                </p>
+
+                <p>
+                    <strong>Experience:</strong>
+                    <%= job.experience_years %> Years
+                </p>
+
+            </section>
+
+            <section class="description-section">
+
+                <h2 class="section-title">
+                    Job Description
+                </h2>
+
+                <p class="job-description">
+                    <%= job.description %>
+                </p>
+
+            </section>
+
+            <div class="detail-actions">
+
+                <a href="/job" class="back-btn">
+                    Back To Jobs
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
