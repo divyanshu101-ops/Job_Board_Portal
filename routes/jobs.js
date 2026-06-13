@@ -11,6 +11,11 @@ router.get("/", async (req, res) => {
         const jobType = req.query.job_type;
         const minSalary = req.query.min_salary;
 
+        const page = Number(req.query.page) || 1;
+
+        const limit = 10;
+        const offset = (page - 1) * limit;
+
         let query = `
             SELECT
                 j.id,
@@ -27,8 +32,18 @@ router.get("/", async (req, res) => {
             WHERE j.is_active = true
         `;
 
+        let countQuery = `
+            SELECT COUNT(*)
+            FROM jobs j
+            WHERE j.is_active = true
+        `;
+
         if (search) {
             query += `
+                AND j.title ILIKE '%${search}%'
+            `;
+
+            countQuery += `
                 AND j.title ILIKE '%${search}%'
             `;
         }
@@ -37,10 +52,18 @@ router.get("/", async (req, res) => {
             query += `
                 AND j.location = '${location}'
             `;
+
+            countQuery += `
+                AND j.location = '${location}'
+            `;
         }
 
         if (jobType) {
             query += `
+                AND j.job_type = '${jobType}'
+            `;
+
+            countQuery += `
                 AND j.job_type = '${jobType}'
             `;
         }
@@ -49,11 +72,23 @@ router.get("/", async (req, res) => {
             query += `
                 AND j.salary_min >= ${minSalary}
             `;
+
+            countQuery += `
+                AND j.salary_min >= ${minSalary}
+            `;
         }
 
         query += `
             ORDER BY j.posted_at DESC
+            LIMIT ${limit}
+            OFFSET ${offset}
         `;
+
+        const totalJobsResult = await pool.query(countQuery);
+
+        const totalJobs = Number(totalJobsResult.rows[0].count);
+
+        const totalPages = Math.ceil(totalJobs / limit);
 
         const jobsDetail = await pool.query(query);
 
@@ -62,7 +97,9 @@ router.get("/", async (req, res) => {
             search,
             location,
             jobType,
-            minSalary
+            minSalary,
+            page,
+            totalPages
         });
 
     } catch (err) {

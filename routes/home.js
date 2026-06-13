@@ -26,11 +26,6 @@ router.get("/", async (req, res) => {
         WHERE is_active = true AND location <> 'Remote';
         `);
 
-    console.log(totalActive.rows[0]); 
-    console.log(totalCompanies.rows[0]);
-    console.log(latestJobs.rows)
-    console.log(totalCities.rows[0]); 
-
     res.render("home", {totalActive : totalActive.rows[0],
         totalCompanies: totalCompanies.rows[0],
         latestJobs : latestJobs.rows,

@@ -6,13 +6,9 @@
     <title>All Jobs</title>
 </head>
 <body>
-
     <h1>Available Jobs</h1>
-
     <hr>
-
     <form action="/job" method="GET">
-
         <div>
             <label>Search Job</label>
 
@@ -93,7 +89,6 @@
         </div>
 
         <br>
-
         <div>
             <label>Minimum Salary</label>
 
@@ -106,21 +101,15 @@
         </div>
 
         <br>
-
         <button type="submit">
             Apply Filters
         </button>
-
     </form>
-
     <hr>
 
     <% if (jobsDetail.length > 0) { %>
-
         <% jobsDetail.forEach(job => { %>
-
             <div>
-
                 <h2>
                     <%= job.title %>
                 </h2>
@@ -151,18 +140,42 @@
                     <strong>Experience Required:</strong>
                     <%= job.experience_years %> Years
                 </p>
-
             </div>
 
             <hr>
-
         <% }) %>
 
     <% } else { %>
-
         <h3>No Jobs Found</h3>
-
     <% } %>
 
+    <hr>
+
+    <div>
+        <% if(page > 1){ %>
+            <a href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= page - 1 %>">
+                Previous
+            </a>
+        <% } %>
+
+        <% for(let i = 1; i <= totalPages; i++){ %>
+            <% if(i === page){ %>
+                <strong>
+                    <%= i %>
+                </strong>
+
+            <% } else { %>
+                <a href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= page %>">
+                    <%= i %>
+                </a>
+            <% } %>
+        <% } %>
+
+        <% if(page < totalPages){ %>
+            <a href="/job?search=<%= search || '' %>&location=<%= location || '' %>&job_type=<%= jobType || '' %>&min_salary=<%= minSalary || '' %>&page=<%= page + 1 %>">
+                Next
+            </a>
+        <% } %>
+    </div>
 </body>
 </html>
